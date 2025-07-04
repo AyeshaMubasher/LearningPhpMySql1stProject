@@ -24,14 +24,31 @@ $(document).ready(function () {
   });
 
   // Email validation
-  email.on("input", function () {
+  email.on("blur", function () {
     const value = $(this).val().trim();
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!emailPattern.test(value)) {
       emailError.text("Invalid email format.");
-    } else {
-      emailError.text("");
+      return;
     }
+
+    // AJAX call to check if email exists
+    $.ajax({
+      url: "checkEmail.php",
+      method: "POST",
+      data: { email: value },
+      success: function (response) {
+        if (response.trim() === "exists") {
+          emailError.text("Email already exists.");
+        } else {
+          emailError.text(""); // Clear error if available
+        }
+      },
+      error: function () {
+        emailError.text("Error checking email.");
+      }
+    });
   });
 
   // Image validation
