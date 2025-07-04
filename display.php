@@ -20,7 +20,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<table>";
-    echo "<tr><th>ID</th><th>Name</th><th>Email</th><th>Image</th></tr>";
+    echo "<tr><th>ID</th><th>Name</th><th>Email</th><th>Image</th><th>Mobile Number</th></tr>";
     while($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . htmlspecialchars($row["id"]) . "</td>";
@@ -45,16 +45,6 @@ if ($result->num_rows > 0) {
             echo "No numbers";
         }
         echo "</td>";
-
-
-
-
-
-
-
-
-
-
         echo "<td>
         <a href='edit.php?id=" . $row["id"] . "'>Edit</a> | 
         <a href='delete.php?id=" . $row["id"] . "' onclick=\"return confirm('Are you sure you want to delete this user?');\">Delete</a>

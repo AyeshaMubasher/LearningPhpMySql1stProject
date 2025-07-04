@@ -18,6 +18,9 @@ if (isset($_GET['id'])) {
 
     // Delete from database
     $conn->query("DELETE FROM users WHERE id = $id");
+
+    // Delete mobilenumbers
+    $conn->query("DELETE FROM mobilenumber WHERE userId = $id");
 }
 
 $conn->close();

@@ -8,7 +8,7 @@ require_once 'config.php'; //constant
 
 $Name= $_REQUEST["name"];
 $Email= $_REQUEST["email"];
-
+exit;
 echo "Name = ".$Name."<br>";
 echo "Email = ".$Email."<br>";
 
@@ -71,11 +71,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $userId = $conn->insert_id;
 
 foreach ($mobileNumbers as $number) {
-    echo "mobile numbers array data ", $number;
+    //echo "\nmobile numbers array data\n", $number;
     $cleanNumber = trim($number);
+    //echo "\nmobile numbers array data after trim\n", $cleanNumber;
     if (!empty($cleanNumber)) {
+        //echo "\n i if data not empty \n", $cleanNumber;
         $stmt = $conn->prepare("INSERT INTO mobilenumber (number, userId) VALUES (?, ?)");
-        $stmt->bind_param("ii", $cleanNumber, $userId); // "s" = string, "i" = integer
+        $stmt->bind_param("si", $cleanNumber, $userId); // "s" = string, "i" = integer
         $stmt->execute();
     }
 }

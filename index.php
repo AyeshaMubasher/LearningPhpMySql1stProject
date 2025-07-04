@@ -32,7 +32,7 @@
 
 <h1>Test Project</h1>
 
-<form id="userForm" action="save.php" method="POST" enctype="multipart/form-data">
+<form id="userForm" action="save.php" method="GET" enctype="multipart/form-data">
   <div>
     <label>Name</label>
     <input type="text" name="name" id="name" />
